@@ -1,0 +1,197 @@
+/* Estilos principales*/
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content-wrap {
+    flex: 1;
+}
+
+
+/* index styles */
+.home-card {
+    background: linear-gradient(to right, #a400b9, #7F00FF);
+    border-radius: 30px;
+    color: white;
+    padding: 30px;
+    margin-top: 20vh;
+    box-shadow: 15px 25px 20px rgba(158, 158, 158, 255);
+    transition: 0.5s;
+    animation: home-card-anim 3s ease infinite;
+}
+
+.home-card:hover {
+    transform: scale(1.1);
+    background-size: 750% 800%;
+    animation: home-card-anim 1.5s ease infinite;
+    box-shadow: none;
+}
+
+@keyframes home-card-anim {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.btn-2 {
+    top: 10px;
+    padding: 5px !important;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    transition: ease-out 0.3s;
+    font-size: 1rem;
+    outline: none;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-2:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.btn-2::before {
+    transition: 0.3s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #B63EFF;
+}
+
+.btn-2:hover::before {
+    transition: 0.4s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
+.btn-2:link {
+    text-decoration: none;
+}
+
+
+/* navbar */
+nav {
+    background: linear-gradient(to right, #a400b9, #7F00FF);
+}
+
+.nav-link {
+    color: #ffff !important;
+}
+
+/*loader*/
+#nprogress .bar {
+    background-color: white !important;
+}
+
+/* footer */
+footer {
+    background: linear-gradient(to right, #a400b9, #7F00FF);
+    color: white;
+    padding: 70px;
+    text-align: center;
+    margin-top: auto;
+    max-height: 20vh;
+}
+
+.form-container {
+    margin: auto;
+    width: 25vw;
+    margin-top: 10vh;
+}
+
+.btn-modify {
+    color: white;
+    background-color: #B63EFF;
+    transition: 0.5s;
+    margin: auto;
+}
+
+@media (max-width: 610px) {
+    .btn-modify {
+        margin-bottom: 5px;
+    }
+}
+
+.btn-modify:hover {
+    transform: scale(1.05);
+    color: white;
+}
+
+.card-profile {
+    background: white;
+    margin-top: 110px;
+    border-radius: 15px;
+    box-shadow: 5px 20px 20px rgba(158, 158, 158, 255);
+    animation: card-load1 1s ease;
+}
+
+.profile-content {
+    padding: 30px;
+}
+
+.profile-header {
+    margin-top: 30px;
+    color: white;
+    background: linear-gradient(to right, #a400b9, #7F00FF);
+    padding: 10px;
+}
+
+.welcome {
+    display: flex;
+    white-space: nowrap;
+    border-right: 2px solid;
+    width: 22ch;
+    animation: typing 2s steps(23), blink .5s infinite step-end alternate;
+    overflow: hidden;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+}
+
+@keyframes blink {
+    50% {
+        border: transparent
+    }
+}
+
+.btn-remove {
+    color: white;
+    background-color: #FF3636;
+    transition: 0.5s;
+    margin: auto;
+}
+
+.btn-remove:hover {
+    transform: scale(1.05);
+    color: white;
+}
