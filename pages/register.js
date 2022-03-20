@@ -22,8 +22,9 @@ const register = ({ user }) => {
     const password = e.target.password.value;
     const email = e.target.email.value;
 
+
     try {
-      axios.post(process.env.NEXT_PUBLIC_REGISTER,
+      await axios.post(process.env.NEXT_PUBLIC_REGISTER,
         {
           name,
           lastname,
