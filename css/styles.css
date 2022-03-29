@@ -111,7 +111,7 @@ nav {
 }
 
 /* footer */
-footer {
+/* footer {
     background: linear-gradient(to right, #a400b9, #7F00FF);
     color: white;
     padding: 70px;
@@ -119,11 +119,34 @@ footer {
     margin-top: auto;
     max-height: 20vh;
 }
+ */
+footer {
+    background: linear-gradient(to right, #a400b9, #7F00FF);
+}
 
-.form-container {
+.form-product {
     margin: auto;
     width: 25vw;
     margin-top: 10vh;
+}
+
+@media screen and (max-width: 768px) {
+    .form-product {
+        margin-top: 5vh;
+    }
+}
+
+.form-user {
+    margin: auto;
+    margin-top: 10vh;
+}
+
+@media (min-width: 800px) {
+    .form-user {
+        margin: auto;
+        max-width: 25vw;
+        margin-top: 20vh;
+    }
 }
 
 .btn-modify {
@@ -144,25 +167,6 @@ footer {
     color: white;
 }
 
-.card-profile {
-    background: white;
-    margin-top: 110px;
-    border-radius: 15px;
-    box-shadow: 5px 20px 20px rgba(158, 158, 158, 255);
-    animation: card-load1 1s ease;
-}
-
-.profile-content {
-    padding: 30px;
-}
-
-.profile-header {
-    margin-top: 30px;
-    color: white;
-    background: linear-gradient(to right, #a400b9, #7F00FF);
-    padding: 10px;
-}
-
 .welcome {
     display: flex;
     white-space: nowrap;
@@ -170,6 +174,7 @@ footer {
     width: 22ch;
     animation: typing 2s steps(23), blink .5s infinite step-end alternate;
     overflow: hidden;
+    font-size: 24pt;
 }
 
 @keyframes typing {
@@ -184,6 +189,34 @@ footer {
     }
 }
 
+@media (max-width: 601px) {
+    .welcome {
+        display: inline;
+        border-right: none;
+        white-space: normal;
+        max-width: 22ch;
+        animation: none;
+        overflow: hidden;
+    }
+
+    .saludo {
+        display: inline-block;
+        white-space: normal;
+    }
+
+    .home-card {
+        background: linear-gradient(to right, #a400b9, #7F00FF);
+        border-radius: 30px;
+        color: white;
+        padding: 30px;
+        margin-top: 14vh;
+        margin-bottom: 5vh;
+        box-shadow: 15px 25px 20px rgba(158, 158, 158, 255);
+        transition: 0.5s;
+        animation: home-card-anim 3s ease infinite;
+    }
+}
+
 .btn-remove {
     color: white;
     background-color: #FF3636;
@@ -194,4 +227,31 @@ footer {
 .btn-remove:hover {
     transform: scale(1.05);
     color: white;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    bottom: 0;
+    flex: 1;
+}
+
+.profile-text-header {
+    font-size: 16pt;
+    font-weight: bold;
+    opacity: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 800px) {
+
+    .contenedor-profile {
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+
 }

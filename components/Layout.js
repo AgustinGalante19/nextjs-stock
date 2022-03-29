@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import { useCookies } from 'react-cookie';
 
-import Navbar from './Navbar';
+import Navbar from './Navigation';
 import AuthNavbar from './AuthNavbar';
 import Footer from './Footer';
 

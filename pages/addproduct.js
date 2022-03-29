@@ -1,9 +1,10 @@
 import axios from 'axios';
 import Layout from '../components/Layout';
 import { useCookies } from 'react-cookie';
-import Router from 'next/router'
+import Router from 'next/router';
+import * as cookie from 'cookie';
 
-const addproduct = () => {
+const addproduct = ({ user }) => {
 
     //get cookies from 'useCookies' method from react-cookie package.
     const [cookie, setCookie] = useCookies(["user"]);
@@ -34,36 +35,65 @@ const addproduct = () => {
     }
 
     return (
-        <Layout>
-            <div className="container form-modify">
-                <div className="form-container form-signin">
-                    <form onSubmit={handleSubmit} method="POST">
-                        <div className="mb-3">
-                            <label className="form-label">Name</label>
-                            <input type="text" className="form-control" name="name" placeholder="name"
-                                aria-describedby="emailHelp" required />
+        !user ? (
+            <h1>loading...</h1>
+        ) : (
+            <Layout username={user.username}>
+                <div className="container">
+                    <div className="row align-items-center py-4">
+                        <div className="col form-product">
+                            <form onSubmit={handleSubmit} method="POST">
+                                <div className="mb-3">
+                                    <label className="form-label">Name</label>
+                                    <input type="text" className="form-control" name="name" placeholder="name"
+                                        aria-describedby="emailHelp" required />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Brand</label>
+                                    <input type="text" className="form-control" name="brand" placeholder="brand" autoComplete="on"
+                                        required />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Model</label>
+                                    <input type="text" className="form-control" name="model" placeholder="model" autoComplete="on"
+                                        required />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Quantity</label>
+                                    <input type="text" className="form-control" name="quantity" placeholder="1" autoComplete="on"
+                                        required />
+                                </div>
+                                <button type="submit" className="btn btn-modify" >Add</button>
+                            </form>
                         </div>
-                        <div className="mb-3">
-                            <label className="form-label">Brand</label>
-                            <input type="text" className="form-control" name="brand" placeholder="brand" autoComplete="on"
-                                required />
-                        </div>
-                        <div className="mb-3">
-                            <label className="form-label">Model</label>
-                            <input type="text" className="form-control" name="model" placeholder="model" autoComplete="on"
-                                required />
-                        </div>
-                        <div className="mb-3">
-                            <label className="form-label">Quantity</label>
-                            <input type="text" className="form-control" name="quantity" placeholder="1" autoComplete="on"
-                                required />
-                        </div>
-                        <button type="submit" className="btn btn-modify" >Add</button>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </Layout>
+            </Layout>
+        )
     )
 }
 
 export default addproduct;
+
+export async function getServerSideProps(context) {
+    const cookies = context.req.headers.cookie;
+    if (cookies) {
+        const token = cookie.parse(cookies);
+        const res = await fetch(process.env.NEXT_PUBLIC_GET_DATA, {
+            headers: {
+                "auth-token": token.user
+            }
+        });
+        const user = await res.json();
+        return {
+            props: {
+                user: user,
+            }
+        }
+    }
+    return {
+        props: {
+            user: null
+        }
+    }
+}

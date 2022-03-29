@@ -6,22 +6,6 @@ import AuthHeader from '../components/AuthHeader';
 
 const index = ({ user, isLoading }) => {
     const [loading, setLoading] = useState(isLoading);
-    /* return (
-        <Layout username={user.name}>
-            {
-                loading ? (
-                    <h1>loading...</h1>
-                ) : (
-                    user ? (
-                        <AuthHeader username={user.name} />
-                    ) : (
-                        <Header />
-                    )
-                )
-
-            }
-        </Layout>
-    ) */
     return (
         user ? (
             <Layout username={user.name}>

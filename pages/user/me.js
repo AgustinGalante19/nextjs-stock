@@ -1,23 +1,29 @@
-import Layout from '../components/Layout';
-import ProfileCard from '../components/ProfileCard';
+import Layout from '../../components/Layout';
 import * as cookie from 'cookie';
-import Custom404 from './404';
+
+import Custom404 from '../404';
+import ProfileCard from '../../components/PorifleCard';
+
 
 const profile = ({ user }) => {
+
+
+
     return (
         user ? (
             <Layout username={user.username}>
-
                 {
                     !user ? (
                         <p>Loading...</p>
                     ) : (
-                        <ProfileCard
-                            id={user._id}
-                            username={user.username}
-                            email={user.email}
-                        />
-
+                        <div className="container">
+                            <ProfileCard
+                                name={user.name}
+                                lastname={user.lastname}
+                                username={user.username}
+                                email={user.email}
+                            />
+                        </div>
                     )
                 }
             </Layout>

@@ -11,10 +11,12 @@ const stock = ({ data }) => {
     return (
         data ? (
             <Layout username={data.username}>
-                <div className="container-fluid" style={{ marginTop: "5vh" }}>
+                <div className='py-2'>
                     <Link href="/addproduct">
                         <a className="btn btn-modify" style={{ marginBottom: "1vh" }}>+</a>
                     </Link>
+                </div>
+                <div style={{ overflowX: "auto" }}>
                     {
                         !data.products ? (
                             <h4>loading...</h4>
