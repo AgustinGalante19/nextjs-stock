@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import * as cookie from 'cookie';
 import Link from 'next/link';
 
@@ -6,7 +7,26 @@ import Stock from '../../components/Stock';
 import Custom404 from '../../pages/404';
 
 
-const stock = ({ data }) => {
+const stock = ({ data, products }) => {
+
+
+    const [element, setElement] = useState("");
+    const [stock, setStock] = useState(products);
+
+    const handleChange = (e) => {
+        setElement(e.target.value);
+        filter(e.target.value);
+    }
+
+    const filter = (element) => {
+        var result = data.products.filter(function (item) {
+            if (item.name.toString().toLowerCase().includes(element.toLowerCase()) || item.brand.toString().toLowerCase().includes(element.toLowerCase()) || item.model.toString().toLowerCase().includes(element.toLowerCase())) {
+                return item;
+            }
+        });
+        setStock(result);
+    }
+
 
     return (
         data ? (
@@ -16,14 +36,23 @@ const stock = ({ data }) => {
                         <a className="btn btn-modify" style={{ marginBottom: "1vh" }}>+</a>
                     </Link>
                 </div>
+                <div className="py-2">
+                    <input
+                        className='form-control'
+                        placeholder='Search product by name, brand or model'
+                        value={element}
+                        onChange={handleChange}
+                    />
+                    <button className="btn "></button>
+                </div>
                 <div style={{ overflowX: "auto" }}>
                     {
-                        !data.products ? (
+                        !stock ? (
                             <h4>loading...</h4>
                         ) : (
-                            data.products.length > 0 ? (
+                            stock.length > 0 ? (
 
-                                <Stock products={data.products} />
+                                <Stock products={stock} />
 
                             ) : (
                                 <h1>no products :/</h1>
@@ -49,13 +78,13 @@ export async function getServerSideProps(context) {
                 "auth-token": user
             }
         });
-        console.log()
+
         if (res.status == 200) {
             const data = await res.json();
-
             return {
                 props: {
-                    data
+                    data,
+                    products: data.products
                 }
             }
         } else {

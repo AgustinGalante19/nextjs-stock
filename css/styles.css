@@ -110,16 +110,6 @@ nav {
     background-color: white !important;
 }
 
-/* footer */
-/* footer {
-    background: linear-gradient(to right, #a400b9, #7F00FF);
-    color: white;
-    padding: 70px;
-    text-align: center;
-    margin-top: auto;
-    max-height: 20vh;
-}
- */
 footer {
     background: linear-gradient(to right, #a400b9, #7F00FF);
 }
@@ -195,7 +185,6 @@ footer {
         border-right: none;
         white-space: normal;
         max-width: 22ch;
-        animation: none;
         overflow: hidden;
     }
 
@@ -204,12 +193,13 @@ footer {
         white-space: normal;
     }
 
+
     .home-card {
         background: linear-gradient(to right, #a400b9, #7F00FF);
         border-radius: 30px;
         color: white;
         padding: 30px;
-        margin-top: 14vh;
+        margin-top: 10vh;
         margin-bottom: 5vh;
         box-shadow: 15px 25px 20px rgba(158, 158, 158, 255);
         transition: 0.5s;
