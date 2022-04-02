@@ -7,9 +7,12 @@ import Navbar from './Navigation';
 import AuthNavbar from './AuthNavbar';
 import Footer from './Footer';
 
-const Layout = ({ children, username }) => {
 
+import { useUser } from '../context/userContext';
 
+const Layout = ({ children }) => {
+
+  const { user } = useUser();
   const [authent, setAutent] = useState(false);
   //! Set the value of cookie 'user' with value of the token received from the api.
   const [cookie, setCookie] = useCookies(["user"]);
@@ -43,7 +46,7 @@ const Layout = ({ children, username }) => {
       <div className="content-wrap">
         {
           authent ? (
-            <AuthNavbar username={username} />
+            <AuthNavbar username={user.username} />
           ) : (
             <Navbar />
           )
@@ -56,5 +59,4 @@ const Layout = ({ children, username }) => {
     </div>
   )
 }
-
 export default Layout;

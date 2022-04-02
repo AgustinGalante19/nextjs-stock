@@ -3,9 +3,11 @@ import * as cookie from 'cookie';
 import Layout from '../components/Layout';
 import Header from '../components/Header';
 import AuthHeader from '../components/AuthHeader';
+import { useUser } from '../context/userContext'
 
-const index = ({ user, isLoading }) => {
+const index = ({ isLoading }) => {
     const [loading, setLoading] = useState(isLoading);
+    const { user } = useUser();
     return (
         user ? (
             <Layout username={user.name}>
@@ -27,7 +29,7 @@ const index = ({ user, isLoading }) => {
 
 export default index;
 
-export async function getServerSideProps(context) {
+/* export async function getServerSideProps(context) {
 
     const cookies = context.req.headers.cookie;
     if (cookies) {
@@ -55,4 +57,4 @@ export async function getServerSideProps(context) {
         }
     }
 
-}
+} */

@@ -5,21 +5,21 @@ import Link from 'next/link';
 import Layout from '../../components/Layout';
 import Stock from '../../components/Stock';
 import Custom404 from '../../pages/404';
+import { useUser } from '../../context/userContext';
 
-
-const stock = ({ data, products }) => {
+const stock = ({ products }) => {
 
 
     const [element, setElement] = useState("");
     const [stock, setStock] = useState(products);
-
+    const { user } = useUser();
     const handleChange = (e) => {
         setElement(e.target.value);
         filter(e.target.value);
     }
 
     const filter = (element) => {
-        var result = data.products.filter(function (item) {
+        var result = products.filter(function (item) {
             if (item.name.toString().toLowerCase().includes(element.toLowerCase()) || item.brand.toString().toLowerCase().includes(element.toLowerCase()) || item.model.toString().toLowerCase().includes(element.toLowerCase())) {
                 return item;
             }
@@ -29,8 +29,8 @@ const stock = ({ data, products }) => {
 
 
     return (
-        data ? (
-            <Layout username={data.username}>
+        products ? (
+            <Layout username={user.username}>
                 <div className='py-2'>
                     <Link href="/addproduct">
                         <a className="btn btn-modify" style={{ marginBottom: "1vh" }}>+</a>
@@ -48,14 +48,14 @@ const stock = ({ data, products }) => {
                 <div style={{ overflowX: "auto" }}>
                     {
                         !stock ? (
-                            <h4>loading...</h4>
+                            <p className="text-center">no products :p</p>
                         ) : (
                             stock.length > 0 ? (
 
                                 <Stock products={stock} />
 
                             ) : (
-                                <h1>no products :/</h1>
+                                <h1 className="text-center">product not found :/</h1>
                             )
                         )
                     }
@@ -83,7 +83,6 @@ export async function getServerSideProps(context) {
             const data = await res.json();
             return {
                 props: {
-                    data,
                     products: data.products
                 }
             }

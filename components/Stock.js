@@ -9,10 +9,6 @@ export default class Stock extends Component {
     constructor(props) {
         super(props);
     }
-    //todo: hacer modify y agregar.
-    handleModify(id) {
-        console.log("modify")
-    }
 
     handleDelete(e) {
         const productId = e.target.id;
