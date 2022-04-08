@@ -2,17 +2,13 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import { useCookies } from 'react-cookie';
+import * as cookie from 'cookie';
 
 import Navbar from './Navigation';
 import AuthNavbar from './AuthNavbar';
 import Footer from './Footer';
 
-
-import { useUser } from '../context/userContext';
-
-const Layout = ({ children }) => {
-
-  const { user } = useUser();
+const Layout = ({ children, username }) => {
   const [authent, setAutent] = useState(false);
   //! Set the value of cookie 'user' with value of the token received from the api.
   const [cookie, setCookie] = useCookies(["user"]);
@@ -46,7 +42,8 @@ const Layout = ({ children }) => {
       <div className="content-wrap">
         {
           authent ? (
-            <AuthNavbar username={user.username} />
+
+            <AuthNavbar username={username} />
           ) : (
             <Navbar />
           )
@@ -59,4 +56,5 @@ const Layout = ({ children }) => {
     </div>
   )
 }
-export default Layout;
+
+export default Layout

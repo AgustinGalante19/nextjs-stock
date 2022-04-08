@@ -2,11 +2,9 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import Layout from '../../components/Layout';
 import * as cookie from 'cookie'
-import { useUser } from '../../context/userContext';
 
-const Product = ({ product }) => {
+const Product = ({ product, user }) => {
     const router = useRouter();
-    const { user } = useUser();
     const handleSubmit = (e) => {
 
         e.preventDefault();

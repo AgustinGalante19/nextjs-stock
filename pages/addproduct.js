@@ -2,13 +2,11 @@ import axios from 'axios';
 import Layout from '../components/Layout';
 import { useCookies } from 'react-cookie';
 import Router from 'next/router';
-import { useUser } from '../context/userContext';
 
 const addproduct = ({ user }) => {
 
     //get cookies from 'useCookies' method from react-cookie package.
     const [cookie, setCookie] = useCookies(["user"]);
-    const { user } = useUser();
     const token = cookie.user;
 
 

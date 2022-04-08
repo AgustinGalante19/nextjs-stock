@@ -2,8 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/styles.css';
 import Head from 'next/head';
 import { CookiesProvider } from 'react-cookie';
-import { UserProvider } from '../context/userContext'
-
 
 function MyApp({ Component, pageProps }) {
     return (
@@ -13,9 +11,7 @@ function MyApp({ Component, pageProps }) {
                 <meta name="description" content="Stock master, a web site to storage yout stock products."></meta>
             </Head>
             <CookiesProvider>
-                <UserProvider>
-                    <Component {...pageProps} />
-                </UserProvider>
+                <Component {...pageProps} />
             </CookiesProvider>
         </>
     )

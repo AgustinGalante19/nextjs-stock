@@ -5,21 +5,19 @@ import Link from 'next/link';
 import Layout from '../../components/Layout';
 import Stock from '../../components/Stock';
 import Custom404 from '../../pages/404';
-import { useUser } from '../../context/userContext';
 
-const stock = ({ products }) => {
+const stock = ({ data }) => {
 
 
     const [element, setElement] = useState("");
-    const [stock, setStock] = useState(products);
-    const { user } = useUser();
+    const [stock, setStock] = useState(data.products);
     const handleChange = (e) => {
         setElement(e.target.value);
         filter(e.target.value);
     }
 
     const filter = (element) => {
-        var result = products.filter(function (item) {
+        var result = data.products.filter(function (item) {
             if (item.name.toString().toLowerCase().includes(element.toLowerCase()) || item.brand.toString().toLowerCase().includes(element.toLowerCase()) || item.model.toString().toLowerCase().includes(element.toLowerCase())) {
                 return item;
             }
@@ -29,8 +27,8 @@ const stock = ({ products }) => {
 
 
     return (
-        products ? (
-            <Layout username={user.username}>
+        data.products ? (
+            <Layout username={data.name}>
                 <div className='py-2'>
                     <Link href="/addproduct">
                         <a className="btn btn-modify" style={{ marginBottom: "1vh" }}>+</a>
@@ -83,7 +81,7 @@ export async function getServerSideProps(context) {
             const data = await res.json();
             return {
                 props: {
-                    products: data.products
+                    data
                 }
             }
         } else {
