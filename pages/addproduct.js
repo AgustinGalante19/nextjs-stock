@@ -2,6 +2,7 @@ import axios from 'axios';
 import Layout from '../components/Layout';
 import { useCookies } from 'react-cookie';
 import Router from 'next/router';
+import * as cookie from 'cookie';
 
 const addproduct = ({ user }) => {
 
@@ -72,3 +73,19 @@ const addproduct = ({ user }) => {
 }
 
 export default addproduct;
+
+export async function getServerSideProps(context) {
+    const cookies = cookie.parse(context.req.headers.cookie);
+    const token = cookies['user'];
+    const res = await fetch(process.env.NEXT_PUBLIC_GET_DATA, {
+        headers: {
+            "auth-token": token
+        }
+    });
+    const user = await res.json();
+    return {
+        props: {
+            user
+        }
+    }
+}
