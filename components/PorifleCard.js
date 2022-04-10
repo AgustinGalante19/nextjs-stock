@@ -7,7 +7,7 @@ const PorifleCard = (props) => {
     const handleLogout = e => {
         e.preventDefault();
         removeCookie("user", { path: "/" });
-        router.push("/");
+        window.location.href = "/";
     }
     return (
         <div className="contenedor">

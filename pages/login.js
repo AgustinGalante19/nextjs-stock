@@ -4,7 +4,6 @@ import Custom404 from './404';
 
 
 const login = ({ user }) => {
-    //todo: create form component.
     return (
         !user ? (
             <Layout>

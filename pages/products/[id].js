@@ -1,12 +1,15 @@
+import { useContext } from 'react'
 import axios from 'axios';
 import { useRouter } from 'next/router'
 import Layout from '../../components/Layout';
-import * as cookie from 'cookie'
+import { userContext } from '../../context/User/UserContext';
 
-const Product = ({ product, user }) => {
+const Product = ({ product }) => {
+
     const router = useRouter();
-    const handleSubmit = (e) => {
+    const { user } = useContext(userContext);
 
+    const handleSubmit = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
         const brand = e.target.brand.value;
@@ -24,7 +27,7 @@ const Product = ({ product, user }) => {
         !user ? (
             <h1>loading...</h1>
         ) : (
-            <Layout username={user}>
+            <Layout>
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col form-product" >
@@ -69,16 +72,9 @@ export async function getServerSideProps(context) {
     if (cookies) {
         const res = await fetch(process.env.NEXT_PUBLIC_GET_STOCK + "/" + id);
         const product = await res.json();
-        const user = await fetch(process.env.NEXT_PUBLIC_GET_DATA, {
-            headers: {
-                "auth-token": cookie.parse(cookies).user
-            }
-        });
-        const userData = await user.json();
         return {
             props: {
                 product: product,
-                user: userData.username
             }
         }
     }
@@ -86,7 +82,6 @@ export async function getServerSideProps(context) {
     return {
         props: {
             product: null,
-            user: null,
         }
     }
 }

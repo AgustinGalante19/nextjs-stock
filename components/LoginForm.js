@@ -25,7 +25,8 @@ const LoginForm = () => {
                 maxAge: 3600 * 24 * 7,
                 sameSite: true
             });
-            router.push("/");
+            window.location.href = "/";
+            /* router.push("/"); */
         } else if (res.status == 203) {
             if (res.data.password == false) {
                 const message = "Invalid password.";

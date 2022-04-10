@@ -18,7 +18,6 @@ const register = ({ user }) => {
   const handleSignUp = async (e) => {
 
     e.preventDefault();
-    //todo: validar datos
     const name = e.target.name.value;
     const lastname = e.target.lastname.value;
     const username = e.target.username.value;
@@ -28,9 +27,6 @@ const register = ({ user }) => {
 
 
     try {
-
-
-
       if (password != confirmPassword) {
         const message = "Passwords do not match.";
         setErrorMessage(message);
@@ -49,7 +45,8 @@ const register = ({ user }) => {
             maxAge: 3600 * 24 * 7,
             sameSite: true
           });
-          router.push("/");
+          /* router.push("/"); */
+          window.location.href = "/";
         } else if (res.status == 203) {
           if (res.data.userExists) {
             const message = "User already exists.";

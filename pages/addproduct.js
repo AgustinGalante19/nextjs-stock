@@ -1,17 +1,19 @@
+import { useContext } from 'react'
 import axios from 'axios';
 import Layout from '../components/Layout';
 import { useCookies } from 'react-cookie';
 import Router from 'next/router';
-import * as cookie from 'cookie';
+import { userContext } from '../context/User/UserContext';
 
-const addproduct = ({ user }) => {
+const addproduct = () => {
 
-    //get cookies from 'useCookies' method from react-cookie package.
+
+    const { user } = useContext(userContext);
     const [cookie, setCookie] = useCookies(["user"]);
-    const token = cookie.user;
-
-
     const handleSubmit = (e) => {
+        //get cookies from 'useCookies' method from react-cookie package.
+
+
         e.preventDefault();
         const name = e.target.name.value;
         const brand = e.target.brand.value;
@@ -20,7 +22,7 @@ const addproduct = ({ user }) => {
 
         axios.post(process.env.NEXT_PUBLIC_GET_STOCK, { name, brand, model, quantity }, {
             headers: {
-                "auth-token": token
+                "auth-token": cookie.user
             }
         })
             .then(() => {
@@ -37,7 +39,7 @@ const addproduct = ({ user }) => {
         !user ? (
             <h1>loading...</h1>
         ) : (
-            <Layout username={user.username}>
+            <Layout>
                 <div className="container">
                     <div className="row align-items-center py-4">
                         <div className="col form-product">
@@ -73,19 +75,3 @@ const addproduct = ({ user }) => {
 }
 
 export default addproduct;
-
-export async function getServerSideProps(context) {
-    const cookies = cookie.parse(context.req.headers.cookie);
-    const token = cookies['user'];
-    const res = await fetch(process.env.NEXT_PUBLIC_GET_DATA, {
-        headers: {
-            "auth-token": token
-        }
-    });
-    const user = await res.json();
-    return {
-        props: {
-            user
-        }
-    }
-}
