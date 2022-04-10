@@ -15,7 +15,8 @@ const Product = ({ product }) => {
         const brand = e.target.brand.value;
         const model = e.target.model.value;
         const quantity = e.target.quantity.value;
-        axios.put(`http://localhost:5000/api/products/stock/${product._id}`,
+        //http://localhost:5000/api/products/stock
+        axios.put(`${process.env.NEXT_PUBLIC_GET_STOCK}/${product._id}`,
             {
                 name, brand, model, quantity,
             }).then(() => {
