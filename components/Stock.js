@@ -12,7 +12,7 @@ export default class Stock extends Component {
 
     handleDelete(e) {
         const productId = e.target.id;
-        axios.delete(`http://localhost:5000/api/products/stock/${productId}`)
+        axios.delete(`${process.env.NEXT_PUBLIC_GET_STOCK}/${productId}`)
             .then(() => {
                 Router.reload("/stock");
             });
