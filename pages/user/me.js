@@ -3,6 +3,7 @@ import Layout from '../../components/Layout';
 import Custom404 from '../404';
 import ProfileCard from '../../components/PorifleCard';
 import { userContext } from '../../context/User/UserContext';
+import Loader from '../../components/Loader';
 
 const profile = () => {
 
@@ -26,7 +27,9 @@ const profile = () => {
                 }
             </Layout>
         ) : (
-            <Custom404 />
+            <Layout>
+                <Loader />
+            </Layout>
         )
     )
 }

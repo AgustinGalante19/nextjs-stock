@@ -3,14 +3,16 @@ import Layout from '../components/Layout';
 import Header from '../components/Header';
 import AuthHeader from '../components/AuthHeader';
 import { userContext } from '../context/User/UserContext';
+import { useCookies } from 'react-cookie'
 
 const index = () => {
 
     //TODO: use context in layout component, not in the rest of components and not require username as prop
     const { user } = useContext(userContext);
+    const [cookie, setCookie] = useCookies(["user"]);
 
     return (
-        user ? (
+        user && cookie.user ? (
             <Layout>
                 <AuthHeader />
             </Layout>
@@ -23,5 +25,3 @@ const index = () => {
 }
 
 export default index;
-
-//* addproduct.js, index/home page x2, products/[id], products/index 

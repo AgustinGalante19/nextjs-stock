@@ -5,6 +5,7 @@ import Layout from '../../components/Layout';
 import Stock from '../../components/Stock';
 import Custom404 from '../../pages/404';
 import { userContext } from '../../context/User/UserContext';
+import Loader from '../../components/Loader';
 
 const stock = ({ products }) => {
 
@@ -13,6 +14,7 @@ const stock = ({ products }) => {
 
     const [element, setElement] = useState("");
     const [stock, setStock] = useState(products);
+    const [fullstock, setFullstock] = useState(products);
     const handleChange = (e) => {
         setElement(e.target.value);
         filter(e.target.value);
@@ -44,19 +46,25 @@ const stock = ({ products }) => {
                             value={element}
                             onChange={handleChange}
                         />
-                        <button className="btn "></button>
+                        <button className="btn"></button>
                     </div>
                     <div style={{ overflowX: "auto" }}>
+                        {console.log(fullstock.length)}
                         {
-                            !stock ? (
-                                <p className="text-center">no products :p</p>
+
+                            fullstock.length <= 0 ? (
+                                <div className="text-center">
+                                    <h3>You don't have any products loaded!</h3>
+                                    <p style={{opacity: "50%"}}>Add a product clicking on + button!</p>
+                                </div>
+
                             ) : (
                                 stock.length > 0 ? (
 
                                     <Stock products={stock} />
 
                                 ) : (
-                                    <h1 className="text-center">product not found :/</h1>
+                                    <h3 className="text-center">Product not found.</h3>
                                 )
                             )
                         }
@@ -64,7 +72,9 @@ const stock = ({ products }) => {
                 </div>
             </Layout>
         ) : (
-            <Custom404 />
+            <Layout>
+                <Loader />
+            </Layout>
         )
     )
 }

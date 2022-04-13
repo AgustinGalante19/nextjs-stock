@@ -7,12 +7,13 @@ import { userContext } from '../context/User/UserContext';
 import Navbar from './Navigation';
 import AuthNavbar from './AuthNavbar';
 import Footer from './Footer';
+import Loader from './Loader';
+import LoadingNavbar from './LoadingNavbar';
 
 const Layout = ({ children }) => {
   const [authent, setAutent] = useState(false);
   //! Set the value of cookie 'user' with value of the token received from the api.
   const [cookie, setCookie] = useCookies(["user"]);
-
   const router = useRouter();
 
   const { user } = useContext(userContext);
@@ -27,8 +28,6 @@ const Layout = ({ children }) => {
     } else {
       setAutent(false);
     }
-
-
     //loader things
     router.events.on("routeChangeStart", handleRouteChange);
     router.events.on("routeChangeComplete", () => NProgress.done());
@@ -42,18 +41,21 @@ const Layout = ({ children }) => {
     <div className="page-container">
       <div className="content-wrap">
         {
-          authent && user ? (
-            <AuthNavbar username={user.name} />
-          ) : (
+          !user && cookie.user ? (
+            <LoadingNavbar />//todo: upgrade loadingnavbar.
+          ) : !user && !cookie.user ? (
             <Navbar />
-          )
+          ) : user && cookie.user ? (
+            <AuthNavbar username={user.name} />
+          ) : ("")
         }
         <main className="container-fluid">
+
           {children}
         </main>
       </div>
       <Footer />
-    </div>
+    </div >
   )
 }
 
