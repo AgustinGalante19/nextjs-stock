@@ -8,7 +8,6 @@ import Navbar from './Navigation';
 import AuthNavbar from './AuthNavbar';
 import Footer from './Footer';
 import Loader from './Loader';
-import LoadingNavbar from './LoadingNavbar';
 
 const Layout = ({ children }) => {
   const [authent, setAutent] = useState(false);
@@ -42,7 +41,7 @@ const Layout = ({ children }) => {
       <div className="content-wrap">
         {
           !user && cookie.user ? (
-            <LoadingNavbar />//todo: upgrade loadingnavbar.
+            <Navbar /> //inhabilitar navbar
           ) : !user && !cookie.user ? (
             <Navbar />
           ) : user && cookie.user ? (
@@ -50,7 +49,6 @@ const Layout = ({ children }) => {
           ) : ("")
         }
         <main className="container-fluid">
-
           {children}
         </main>
       </div>

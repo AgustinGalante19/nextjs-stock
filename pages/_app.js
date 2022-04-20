@@ -10,7 +10,6 @@ function MyApp({ Component, pageProps }) {
         <>
             <Head>
                 <title>Stock master</title>
-                <meta name="description" content="Stock master, a web site to storage yout stock products."></meta>
             </Head>
             <CookiesProvider>
                 <UserContextWrapper>
