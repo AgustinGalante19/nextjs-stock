@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 import axios from 'axios';
-import Layout from '../components/Layout';
+import Layout from '../../components/Layout';
 import { useCookies } from 'react-cookie';
 import Router from 'next/router';
-import { userContext } from '../context/User/UserContext';
+import { userContext } from '../../context/User/UserContext';
 
 const addproduct = () => {
 

@@ -3,7 +3,6 @@ import * as cookie from 'cookie';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import Stock from '../../components/Stock';
-import Custom404 from '../../pages/404';
 import { userContext } from '../../context/User/UserContext';
 import Loader from '../../components/Loader';
 
@@ -35,7 +34,7 @@ const stock = ({ products }) => {
             <Layout>
                 <div className="container">
                     <div className='py-2'>
-                        <Link href="/addproduct">
+                        <Link href="products/add">
                             <a className="btn btn-modify" style={{ marginBottom: "1vh" }}>+</a>
                         </Link>
                     </div>
@@ -49,13 +48,12 @@ const stock = ({ products }) => {
                         <button className="btn"></button>
                     </div>
                     <div style={{ overflowX: "auto" }}>
-                        {console.log(fullstock.length)}
                         {
 
                             fullstock.length <= 0 ? (
                                 <div className="text-center">
                                     <h3>You don't have any products loaded!</h3>
-                                    <p style={{opacity: "50%"}}>Add a product clicking on + button!</p>
+                                    <p style={{ opacity: "50%" }}>Add a product clicking on + button!</p>
                                 </div>
 
                             ) : (

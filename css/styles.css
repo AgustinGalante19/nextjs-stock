@@ -95,6 +95,21 @@ html {
     text-decoration: none;
 }
 
+.highlight {
+    color: #7F00FF;
+}
+
+.fs-25 {
+    font-size: 25pt;
+}
+
+.crdart {
+    border: 1px solid #7F00FF;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    min-height: 200px;
+}
 
 /* navbar */
 nav {
@@ -177,6 +192,11 @@ footer {
     50% {
         border: transparent
     }
+}
+
+
+.saludo {
+    font-size: 30pt;
 }
 
 @media (max-width: 601px) {

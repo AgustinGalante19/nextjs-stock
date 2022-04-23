@@ -5,10 +5,9 @@ import AuthHeader from '../components/AuthHeader';
 import { userContext } from '../context/User/UserContext';
 import { useCookies } from 'react-cookie';
 import Loader from '../components/Loader'
+import Articles from '../components/Articles'
 
 const index = () => {
-
-    //TODO: use context in layout component, not in the rest of components and not require username as prop
     const { user } = useContext(userContext);
     const [cookie, setCookie] = useCookies(["user"]);
     return (
@@ -20,8 +19,11 @@ const index = () => {
                     <AuthHeader username={user.name} />
                 ) : !user && !cookie.user ? (
                     <Header />
-                ) : ("")
+                ) : (
+                    <h1>something bad happened</h1>
+                )
             }
+            <Articles />
         </Layout>
     )
 }
