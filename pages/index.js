@@ -16,14 +16,19 @@ const index = () => {
                 !user && cookie.user ? (
                     <Loader />
                 ) : user && cookie.user ? (
-                    <AuthHeader username={user.name} />
+                    <>
+                        <AuthHeader username={user.name} />
+                        <Articles />
+                    </>
                 ) : !user && !cookie.user ? (
-                    <Header />
+                    <>
+                        <Header />
+                        <Articles />
+                    </>
                 ) : (
                     <h1>something bad happened</h1>
                 )
             }
-            <Articles />
         </Layout>
     )
 }

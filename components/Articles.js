@@ -3,7 +3,7 @@ import React from 'react'
 const Articles = () => {
     return (
         <>
-            <section className='row justify-content-center' style={{ marginTop: 100 }}>
+            <section className='row justify-content-center' style={{ marginTop: 150 }}>
                 <div className='col-12'>
                     <p className='text-center fs-25'>What is <span className='highlight'>StockMaster</span>?</p>
                 </div>
@@ -17,7 +17,7 @@ const Articles = () => {
                 </article>
             </section>
             <div className="container">
-                <section className='row justify-content-center' style={{ marginTop: 50 }}>
+                <section className='row justify-content-center' style={{ marginTop: 100 }}>
                     <div className='col-12'>
                         <p className='text-center fs-25'>Why <span className='highlight'>choose</span> us?</p>
                     </div>
@@ -36,7 +36,7 @@ const Articles = () => {
                                 <p className='fs-5'><span className='fw-bold'>2. </span><span className='highlight'>Unlimited</span> storage for your products</p>
                                 <p>
                                     You can storage unlimited quantity of information in one table!<br />
-                                    To have more than one table you can check our <a className='highlight'>pricing</a>.
+                                    To have more than one table you can check our <a className='highlight link'>pricing</a>.
                                 </p>
                             </div>
                         </article>

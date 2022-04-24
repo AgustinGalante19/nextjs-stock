@@ -109,6 +109,28 @@ html {
     border-radius: 10px;
     margin-top: 20px;
     min-height: 200px;
+    transition: 0.5s;
+    box-shadow: 0px 15px 10px rgba(158, 158, 158, 255);
+
+}
+
+.crdart:hover {
+    transition: 0.5s;
+    transform: scale(1.06);
+    background-color: #B63EFF;
+    color: white;
+    animation: home-card-anim 3s ease infinite;
+    box-shadow: none;
+}
+
+.crdart:hover .highlight {
+    color: white;
+    font-weight: bold;
+}
+
+.crdart:hover .link {
+    color: aqua;
+    cursor: pointer;
 }
 
 /* navbar */
