@@ -33,21 +33,23 @@ const stock = ({ products }) => {
         products && user ? (
             <Layout>
                 <div className="container">
-                    <div className='py-2'>
-                        <Link href="products/add">
-                            <a className="btn btn-modify" style={{ marginBottom: "1vh" }}>+</a>
-                        </Link>
-                    </div>
-                    <div className="py-2">
-                        <input
-                            className='form-control'
-                            placeholder='Search product by name, brand or model'
-                            value={element}
-                            onChange={handleChange}
-                        />
-                        <button className="btn"></button>
-                    </div>
-                    <div style={{ overflowX: "auto" }}>
+                    <aside>
+                        <div className='py-2'>
+                            <Link href="products/add">
+                                <a className="btn btn-modify" style={{ marginBottom: "1vh" }}>+</a>
+                            </Link>
+                        </div>
+                        <div className="py-2">
+                            <input
+                                className='form-control'
+                                placeholder='Search product by name, brand or model'
+                                value={element}
+                                onChange={handleChange}
+                            />
+                            <button className="btn"></button>
+                        </div>
+                    </aside>
+                    <section style={{ overflowX: "auto" }}>
                         {
 
                             fullstock.length <= 0 ? (
@@ -66,7 +68,7 @@ const stock = ({ products }) => {
                                 )
                             )
                         }
-                    </div>
+                    </section>
                 </div>
             </Layout>
         ) : (

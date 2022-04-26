@@ -1,27 +1,34 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import axios from 'axios';
 import { useRouter } from 'next/router'
 import Layout from '../../components/Layout';
 import { userContext } from '../../context/User/UserContext';
+import validateProductForm from '../../services/validateProductForm';
 
 const Product = ({ product }) => {
 
     const router = useRouter();
     const { user } = useContext(userContext);
+    const [errorMessage, setErrorMessage] = useState(null);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const name = e.target.name.value;
         const brand = e.target.brand.value;
         const model = e.target.model.value;
         const quantity = e.target.quantity.value;
-        //http://localhost:5000/api/products/stock
-        axios.put(`${process.env.NEXT_PUBLIC_GET_STOCK}/${product._id}`,
-            {
-                name, brand, model, quantity,
-            }).then(() => {
-                router.push("/products")
-            })
+
+        const result = await validateProductForm(name, model, brand, quantity);
+        if (result.error) {
+            setErrorMessage(result.error);
+        } else {
+            axios.put(`${process.env.NEXT_PUBLIC_GET_STOCK}/${product._id}`,
+                {
+                    name, brand, model, quantity,
+                }).then(() => {
+                    router.push("/products")
+                })
+        }
     }
 
     return (
@@ -32,6 +39,15 @@ const Product = ({ product }) => {
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col form-product" >
+                            <div className="col-sm-4 mx-auto">
+                                {
+                                    errorMessage ? (
+                                        <div className="alert alert-danger" role="alert">
+                                            <p className='text-center'>{errorMessage}</p>
+                                        </div>
+                                    ) : ""
+                                }
+                            </div>
                             <form onSubmit={handleSubmit} method="POST">
                                 <div className="mb-3">
                                     <label className="form-label">Name</label>
