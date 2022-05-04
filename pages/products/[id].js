@@ -4,6 +4,8 @@ import { useRouter } from 'next/router'
 import Layout from '../../components/Layout';
 import { userContext } from '../../context/User/UserContext';
 import validateProductForm from '../../services/validateProductForm';
+import Loader from '../../components/Loader';
+
 
 const Product = ({ product }) => {
 
@@ -32,10 +34,11 @@ const Product = ({ product }) => {
     }
 
     return (
-        !user ? (
-            <h1>loading...</h1>
-        ) : (
-            <Layout>
+        <Layout>
+            {!user ? (
+                <Loader />
+            ) : (
+
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col form-product" >
@@ -74,8 +77,9 @@ const Product = ({ product }) => {
                         </div>
                     </div>
                 </div>
-            </Layout>
-        )
+            )
+            }
+        </Layout>
     )
 }
 

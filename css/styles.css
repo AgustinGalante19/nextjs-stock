@@ -17,6 +17,7 @@ html {
 
 .content-wrap {
     flex: 1;
+    background: #EEEEEE;
 }
 
 
@@ -201,7 +202,7 @@ footer {
     width: 22ch;
     animation: typing 2s steps(23), blink .5s infinite step-end alternate;
     overflow: hidden;
-    font-size: 24pt;
+    font-size: 32pt;
 }
 
 @keyframes typing {
@@ -214,11 +215,6 @@ footer {
     50% {
         border: transparent
     }
-}
-
-
-.saludo {
-    font-size: 30pt;
 }
 
 @media (max-width: 601px) {
@@ -234,7 +230,6 @@ footer {
         display: inline-block;
         white-space: normal;
     }
-
 
     .home-card {
         background: linear-gradient(to right, #a400b9, #7F00FF);

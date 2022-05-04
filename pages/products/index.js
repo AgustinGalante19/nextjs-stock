@@ -32,7 +32,7 @@ const stock = ({ products }) => {
     return (
         products && user ? (
             <Layout>
-                <div className="container">
+                <div className="container py-4">
                     <aside>
                         <div className='py-2'>
                             <Link href="products/add">

@@ -21,7 +21,7 @@ export default class Stock extends Component {
 
     render() {
         return (
-            <table className="table table-hover table-bordered border-dark">
+            <table className="table table-hover table-bordered border-dark bg-light">
                 <thead>
                     <tr>
                         <th scope="col">Name</th>

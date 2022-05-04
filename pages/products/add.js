@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie';
 import Router from 'next/router';
 import { userContext } from '../../context/User/UserContext';
 import productValidation from '../../services/validateProductForm';
+import Loader from '../../components/Loader';
 
 const addproduct = () => {
 
@@ -41,10 +42,11 @@ const addproduct = () => {
     }
 
     return (
-        !user ? (
-            <h1>loading...</h1>
-        ) : (
-            <Layout>
+
+        <Layout>
+            {!user ? (
+                <Loader />
+            ) : (
                 <div className="container">
                     <div className="row align-items-center py-4">
                         <div className="col form-product">
@@ -83,8 +85,9 @@ const addproduct = () => {
                         </div>
                     </div>
                 </div>
-            </Layout>
-        )
+            )
+            }
+        </Layout>
     )
 }
 
